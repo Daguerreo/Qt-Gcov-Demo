@@ -5,22 +5,12 @@ Angle::Angle()
 {
 }
 
-Angle::Angle(double value, Angle::Type type)
+Angle::Angle(float value, Angle::Type type)
    : _value{value}, _type{type}
 {
 }
 
-Angle Angle::Degree(double value)
-{
-   return Angle(value, Deg);
-}
-
-Angle Angle::Radians(double value)
-{
-   return Angle(value, Rad);
-}
-
-double Angle::deg() const
+float Angle::deg() const
 {
    if(_type == Deg){
       return _value;
@@ -29,7 +19,7 @@ double Angle::deg() const
    return radToDeg(_value);
 }
 
-double Angle::rad() const
+float Angle::rad() const
 {
    if(_type == Rad){
       return _value;
@@ -48,12 +38,7 @@ bool Angle::isRad() const
    return _type == Rad;
 }
 
-void Angle::normalize()
+QDebug operator<<(QDebug dbg, const Angle& a)
 {
-   if(isDeg()){
-      _value = degNormalize(_value);
-      return;
-   }
-
-   _value = radNormalize(_value);
+   return dbg << "Angle(" << a._value << (a.isDeg() ? "deg" : "rad") << ")";
 }

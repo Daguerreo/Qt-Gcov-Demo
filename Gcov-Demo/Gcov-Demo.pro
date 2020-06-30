@@ -6,4 +6,6 @@ SUBDIRS += \
 
 test.depends = lib
 
-DISTFILES += common.pri
+DISTFILES += \
+   common.pri \
+   generate_coverage.sh

@@ -20,8 +20,7 @@ SOURCES += \
    angle.cpp
 
 HEADERS += \
-    angle.h \
-    angle_util.h
+    angle.h
 
 TARGET = mylib
 
@@ -29,12 +28,14 @@ TARGET = mylib
    error(common.pri not found)
 }
 
+QMAKE_CXXFLAGS += --coverage
+QMAKE_LFLAGS   += --coverage
+
 OBJECTS_DIR = $$OBJ_DIR
 MOC_DIR = $$MOCS_DIR
 DESTDIR = $$LIB_DIR
 
 mkpath($$INCLUDE_DIR)
 QMAKE_POST_LINK += $$QMAKE_COPY $$quote($$HEADERS) $$quote($$INCLUDE_DIR) $$escape_expand(\\n\\t)
+QMAKE_POST_LINK += $$QMAKE_COPY $$quote(../generate_coverage.sh) $$quote($$BUILD_DIR) $$escape_expand(\\n\\t)
 
-QMAKE_CXXFLAGS += --coverage
-QMAKE_LFLAGS   += --coverage
