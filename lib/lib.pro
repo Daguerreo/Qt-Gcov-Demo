@@ -35,7 +35,7 @@ OBJECTS_DIR = $$OBJ_DIR
 MOC_DIR = $$MOCS_DIR
 DESTDIR = $$LIB_DIR
 
-mkpath($$INCLUDE_DIR)
+QMAKE_PRE_LINK += $(MKDIR) $$INCLUDE_DIR
 QMAKE_POST_LINK += $$QMAKE_COPY $$quote($$HEADERS) $$quote($$INCLUDE_DIR) $$escape_expand(\\n\\t)
 QMAKE_POST_LINK += $$QMAKE_COPY $$quote(../generate_coverage.sh) $$quote($$BUILD_DIR) $$escape_expand(\\n\\t)
 
